@@ -1,0 +1,17 @@
+move(state(middle, onBox, middle, hasNot), 
+     grasp,
+     state(middle, onBox, middle, hasBanana)).
+move(state(P, onFloor, P, H),
+     climb,
+     state(P, onBox, P, H)).
+move(state(P, onFloor, P, H),
+     drag(P, P1),
+     state(P1, onFloor, P1, H)).
+move(state(P, onFloor, Z, H),
+     walk(P, P1),
+     state(P1, onFloor, Z, H)).
+
+canGet(state(_ , _ , _ , hasBanana)).
+canGet(State1) :-
+    move(State1, _ , State2),
+    canGet(State2).
